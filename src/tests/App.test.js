@@ -11,8 +11,7 @@ describe('Teste o componente <App.js />', () => {
 
     const homeLink = screen.getByRole('link', { name: 'Home' });
     const aboutLink = screen.getByRole('link', { name: 'About' });
-    // eslint-disable-next-line sonarjs/no-duplicate-string
-    const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémon' });
+    const favoriteLink = screen.getByRole('link', { name: /Favorite/i });
 
     expect(homeLink).toBeInTheDocument();
     expect(aboutLink).toBeInTheDocument();
@@ -54,7 +53,6 @@ describe('Teste o componente <App.js />', () => {
   });
   test('Teste se a aplicação é redirecionada para a página de Pokémon Favoritados, na URL /favorites, ao clicar no link Favorite Pokémon da barra de navegação', () => {
     const { history } = renderWithRouter(<App />);
-
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémon' });
     expect(favoriteLink).toBeInTheDocument();
     userEvent.click(favoriteLink);
